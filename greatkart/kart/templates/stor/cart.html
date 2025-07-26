@@ -37,7 +37,12 @@
 			<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
 			<figcaption class="info">
 				<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
-				<p class="text-muted small">{{ cart_item.product.description }}</p>
+				<p class="text-muted small">
+					{% for variation in cart_item.variations.all %}
+						{{ variation.variation_category|capfirst }}: {{ variation.variation_value }}<br>
+					{% endfor %}
+				</p>
+
 			</figcaption>
 		</figure>
 	</td>
